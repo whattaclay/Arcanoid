@@ -8,7 +8,7 @@ namespace DefaultNamespace
     public class BallsManager : MonoBehaviour
     {
         private HashSet<Ball> _balls = new HashSet<Ball>();
-
+        [SerializeField] private GameStateManager _gameStateManager;
         private void Awake()
         {
             _balls = FindObjectsOfType<Ball>().ToHashSet();
@@ -21,7 +21,7 @@ namespace DefaultNamespace
 
             if (_balls.Count == 0)
             {
-                Debug.Log("You lose");
+                _gameStateManager.Lose();
             }
         }
     }
