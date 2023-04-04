@@ -30,4 +30,14 @@ public class BallLauncher : MonoBehaviour
     {
         _aimInputProvider.OnUpdate();
     }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+        Gizmos.color = Color.red;
+
+        var targetPos = _aimInputProvider.GetAimTarget();
+        var initialPos = transform.position;
+        Gizmos.DrawLine(initialPos, targetPos);
+    }
 }

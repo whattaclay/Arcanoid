@@ -6,7 +6,7 @@ using UnityEngine;
 public class AimInputProvider : IAimInputProvider
 {
     public event Action OnLaunch;
-    private Vector2 _aimTarget;
+    private Vector3 _aimTarget;
     
     public void OnUpdate()
     {
@@ -17,6 +17,7 @@ public class AimInputProvider : IAimInputProvider
     private void ProcessAimInput()
     {
         _aimTarget = Input.mousePosition;
+        _aimTarget = Camera.main.ScreenToWorldPoint(_aimTarget);
     }
 
     private void ProcessLaunchInput()
