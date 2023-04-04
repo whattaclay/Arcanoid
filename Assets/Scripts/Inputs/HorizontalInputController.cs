@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorizontalInputController : IHorizontalInputProvider
+public class HorizontalInputController : HorizontalInputProviderBase
 {
     private float _horizontalInput;
     
-    public void OnUpdate()
+    private void Update()
     {
         _horizontalInput = Input.GetAxis("Horizontal");
     }
 
-    public float GetCurrentInput()
+    public override float GetCurrentInput()
     {
         return _horizontalInput;
     }

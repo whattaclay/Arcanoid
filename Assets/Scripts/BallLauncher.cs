@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class BallLauncher : MonoBehaviour
 {
+    public event Action OnLaunched;
     [SerializeField] private float _launchSpeed = 1f;
     [SerializeField] private Rigidbody2D _ball;
-    private IAimInputProvider _aimInputProvider;
+    [SerializeField] private AimInputProviderBase _aimInputProvider;
 
     private void Start()
     {
-        _aimInputProvider = new AimInputProvider();
         _aimInputProvider.OnLaunch += Launch;
         _ball.transform.parent = transform;
     }
@@ -24,14 +24,11 @@ public class BallLauncher : MonoBehaviour
         shootDirection *= _launchSpeed;
         _ball.transform.parent = null;
         _ball.AddForce(shootDirection, ForceMode2D.Impulse);
+        
+        OnLaunched?.Invoke();
     }
 
-    private void Update()
-    {
-        _aimInputProvider.OnUpdate();
-    }
-
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
         Gizmos.color = Color.red;
@@ -39,5 +36,5 @@ public class BallLauncher : MonoBehaviour
         var targetPos = _aimInputProvider.GetAimTarget();
         var initialPos = transform.position;
         Gizmos.DrawLine(initialPos, targetPos);
-    }
+    }*/
 }
