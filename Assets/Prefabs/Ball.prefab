@@ -153,4 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6287ffbb3899420fa4b00708cb186779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockManager: {fileID: 0}
+  _elements: {fileID: 11400000, guid: 84faa0e7533ede1428207c0c27ec18a0, type: 2}
+  _firstElement: 2

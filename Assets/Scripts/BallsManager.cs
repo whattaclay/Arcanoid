@@ -9,8 +9,11 @@ namespace DefaultNamespace
     {
         private HashSet<Ball> _balls = new HashSet<Ball>();
         [SerializeField] private GameStateManager _gameStateManager;
+        public static BallsManager Instance => _instance;
+        private static BallsManager _instance;
         private void Awake()
         {
+            _instance = this;
             _balls = FindObjectsOfType<Ball>().ToHashSet();
         }
 

@@ -11,8 +11,12 @@ namespace DefaultNamespace
         [SerializeField] private int _damagePerHit = 1;
         private HashSet<Block> _blocks = new HashSet<Block>();
 
+        public static BlockManager Instance => _instance;
+        private static BlockManager _instance;
+
         private void Awake()
         {
+            _instance = this;
             _blocks = FindObjectsOfType<Block>().ToHashSet();
         }
 
